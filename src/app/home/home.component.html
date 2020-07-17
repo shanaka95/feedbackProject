@@ -1,0 +1,86 @@
+
+
+<mat-horizontal-stepper [linear]="true" #stepper>
+
+  <mat-step label="Step 1" [completed]=" name && email ">
+
+    <p id="itext">Please send us your feedback and suggestions about our website!</p>
+    <!-- <form [formGroup]="firstFormGroup"></form> -->
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Your Name</mat-label>
+        <input matInput placeholder="Your Name" [(ngModel)]='name' required>
+      </mat-form-field>
+
+      <mat-error *ngIf="indexCompleted && name==''" >Name is Required</mat-error>
+    </p>
+    <p>
+      <mat-form-field appearance="outline" >
+        <mat-label>E-Mail Address</mat-label>
+        <input matInput placeholder="Your Email Address" [(ngModel)]='email' required>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Telephone Number</mat-label>
+        <input matInput placeholder="Your Telephone Number" [(ngModel)]='tele' >
+      </mat-form-field>
+    </p>
+  <!-- </form> -->
+    <button id="nextButton" mat-raised-button matStepperNext color="primary">Next</button>
+    <i class="fa fa-spinner fa-spin"></i>
+  </mat-step>
+
+  <mat-step label="Step 2">
+    <mat-list>
+      <mat-list-item> How is the customer support given by our website? </mat-list-item>
+      <div class="rating">
+        <mat-icon class='star' (mouseover)="setStars1(1)">{{q1stars[0]}}</mat-icon>
+        <mat-icon class='star' (mouseover)="setStars1(2)">{{q1stars[1]}}</mat-icon>
+        <mat-icon class='star' (mouseover)="setStars1(3)">{{q1stars[2]}}</mat-icon>
+        <mat-icon class='star' (mouseover)="setStars1(4)">{{q1stars[3]}}</mat-icon>
+        <mat-icon class='star' (mouseover)="setStars1(5)">{{q1stars[4]}}</mat-icon>
+      </div>
+      <mat-list-item> How much you satisfy with the User Interface of our Website </mat-list-item>
+      <div class="rating">
+        <mat-icon class='star' (mouseover)="setStars2(1)">{{q2stars[0]}}</mat-icon>
+        <mat-icon class='star' (mouseover)="setStars2(2)">{{q2stars[1]}}</mat-icon>
+        <mat-icon class='star' (mouseover)="setStars2(3)">{{q2stars[2]}}</mat-icon>
+        <mat-icon class='star' (mouseover)="setStars2(4)">{{q2stars[3]}}</mat-icon>
+        <mat-icon class='star' (mouseover)="setStars2(5)">{{q2stars[4]}}</mat-icon>
+      </div>
+      <mat-list-item> How much would you recommend our website to others</mat-list-item>
+      <div class="rating">
+        <mat-icon class='star' (mouseover)="setStars3(1)">{{q3stars[0]}}</mat-icon>
+        <mat-icon class='star' (mouseover)="setStars3(2)">{{q3stars[1]}}</mat-icon>
+        <mat-icon class='star' (mouseover)="setStars3(3)">{{q3stars[2]}}</mat-icon>
+        <mat-icon class='star' (mouseover)="setStars3(4)">{{q3stars[3]}}</mat-icon>
+        <mat-icon class='star' (mouseover)="setStars3(5)">{{q3stars[4]}}</mat-icon>
+      </div>
+      <mat-list-item> What is the overall satisfaction about our website</mat-list-item>
+      <div class="rating">
+        <mat-icon class='star' (mouseover)="setStars4(1)">{{q4stars[0]}}</mat-icon>
+        <mat-icon class='star' (mouseover)="setStars4(2)">{{q4stars[1]}}</mat-icon>
+        <mat-icon class='star' (mouseover)="setStars4(3)">{{q4stars[2]}}</mat-icon>
+        <mat-icon class='star' (mouseover)="setStars4(4)">{{q4stars[3]}}</mat-icon>
+        <mat-icon class='star' (mouseover)="setStars4(5)">{{q4stars[4]}}</mat-icon>
+      </div>
+     </mat-list>
+     <div id="ratingNext">
+      <button id="nextButton" mat-raised-button matStepperNext color="primary" style="padding-left: 5px;">Next</button>
+    </div>
+    </mat-step>
+
+  <mat-step label="Step 3">
+    <mat-list>
+      <mat-list-item> Please mention further feedbacks and suggestions </mat-list-item>
+      <textarea id="furtherText" [(ngModel)]='feedback'></textarea>
+
+    </mat-list>
+    <div id="finishDiv">
+      <button id="finishButton" [class.spinner]="loading" [disabled]="loading" mat-raised-button (click)="submitFeedback()" color="primary" >Submit Feedback</button>
+    </div>
+  </mat-step>
+
+</mat-horizontal-stepper>
+
